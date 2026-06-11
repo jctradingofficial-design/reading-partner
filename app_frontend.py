@@ -2,6 +2,15 @@ import streamlit as st
 import sqlite3
 import app_backend as db
 from datetime import datetime
+import requests
+
+def send_telegram_message(message):
+    """Securely pulls credentials from Streamlit Secrets and sends a message."""
+    bot_token = st.secrets["BOT_TOKEN"]
+    chat_id = st.secrets["CHAT_ID"]
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": message}
+    requests.post(url, data=payload)
 
 # Ensure the database and tables exist
 db.init_db()
