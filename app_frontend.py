@@ -64,8 +64,8 @@ with tab1:
                     st.progress(current_page / total_pages)
                     st.caption(f"Page {current_page} of {total_pages} • {days_remaining} days remaining")
                 if st.button("Send Test Reminder to Phone"):
-                send_telegram_message("📚 Time to read! This is a test from your live app.")
-                st.success("Message sent!")
+                    send_telegram_message("📚 Time to read! This is a test from your live app.")
+                    st.success("Message sent!")
 # TAB 2: DAILY LOGGING & UPLOADS
 with tab2:
     st.header("Log Your Reading")
