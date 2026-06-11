@@ -24,7 +24,9 @@ def get_active_books():
     books = cursor.fetchall()
     conn.close()
     return books
-
+if st.button("Send Test Reminder to Phone"):
+                    send_telegram_message("📚 Time to read! This is a test from your live app.")
+                    st.success("Message sent!")
 # --- User Interface ---
 st.title("📚 My Reading Partner")
 
@@ -63,9 +65,7 @@ with tab1:
                     # The visual progress bar
                     st.progress(current_page / total_pages)
                     st.caption(f"Page {current_page} of {total_pages} • {days_remaining} days remaining")
-                if st.button("Send Test Reminder to Phone"):
-                    send_telegram_message("📚 Time to read! This is a test from your live app.")
-                    st.success("Message sent!")
+                
 # TAB 2: DAILY LOGGING & UPLOADS
 with tab2:
     st.header("Log Your Reading")
