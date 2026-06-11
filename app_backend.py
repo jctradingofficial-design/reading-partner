@@ -1,7 +1,16 @@
-import sqlite3
-from datetime import datetime
+import os
+import psycopg2
 
-DB_NAME = "reading_tracker.db"
+# This allows the code to work safely on both Streamlit (web) and GitHub (automated actions)
+try:
+    import streamlit as st
+    DB_URL = st.secrets["DATABASE_URL"]
+except ImportError:
+    DB_URL = os.environ.get("DATABASE_URL")
+
+def get_connection():
+    """Opens a connection to the Supabase PostgreSQL database."""
+    return psycopg2.connect(DB_URL)
 
 def init_db():
     """Initializes the database and creates the required tables."""
