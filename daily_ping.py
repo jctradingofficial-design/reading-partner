@@ -52,15 +52,16 @@ def get_smart_message():
         return f"⚠️ Reading Partner tried to calculate your goals but ran into an issue: {e}"
 
 def send_telegram_message(text):
-    """Fires the formatted message to your Telegram bot."""
+    """Fires the formatted message to your Telegram bot and prints the result."""
+    print("Preparing to send message to Telegram...")
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
         "text": text,
         "parse_mode": "Markdown"
     }
-    requests.post(url, data=payload)
-
-if __name__ == "__main__":
-    final_message = get_smart_message()
-    send_telegram_message(final_message)
+    response = requests.post(url, data=payload)
+    
+    # This forces GitHub to show us exactly what Telegram says back
+    print(f"Telegram Status Code: {response.status_code}")
+    print(f"Telegram Error Details: {response.text}")
