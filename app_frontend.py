@@ -15,7 +15,9 @@ def send_telegram_message(message):
 # Ensure the database and tables exist
 
 # --- Helper Function ---
+# --- Helper Function ---
 def get_active_books():
+    return db.get_active_books()
     """Fetches books currently being read to populate the UI."""
     conn = sqlite3.connect(db.DB_NAME)
     cursor = conn.cursor()
