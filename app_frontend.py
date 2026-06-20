@@ -13,7 +13,6 @@ def send_telegram_message(message):
     requests.post(url, data=payload)
 
 # Ensure the database and tables exist
-db.init_db()
 
 # --- Helper Function ---
 def get_active_books():
